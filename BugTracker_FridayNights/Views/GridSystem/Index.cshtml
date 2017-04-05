@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Grid System Demo";
+}
+
+<style>
+    div {
+        outline:1px solid black;
+        text-align: center;
+        min-height: 20px;
+    }
+    .tall{
+        min-height:40px;
+    }
+</style>
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">R1</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">R2C1</div>
+        <div class="col-md-6">R2C2</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 tall">R3C1</div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    R3C2R1
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    R3C2R2
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">R4</div>
+    </div>
+</div>
+
+

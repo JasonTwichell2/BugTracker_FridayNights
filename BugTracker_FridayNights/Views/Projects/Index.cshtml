@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BugTracker_FridayNights.Models.Project>
+
+@{
+    ViewBag.Title = "PROJECTS";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New Project", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayName("Additional Information")
+            </th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+               
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Name)</b>
+                </td>
+                @*<td>
+                    <b>@Html.DisplayFor(modelItem => item.Description)</b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>*@
+                <td>
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @style = "font-weight:bold;color:green;" }) <span> | </span>                          
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @style = "font-weight:bold;color:green;" })
+                            <br />
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @style = "font-weight:bold;color:red;" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ActionLink("Assign Users", "AddUser", "Admin", new { ProjectId = item.Id }, new { @style = "font-weight:bold;" }) <span> | </span>
+                            @Html.ActionLink("Unassign Users", "RemoveUser", "Admin", new { ProjectId = item.Id }, new { @style = "font-weight:bold;" })
+                            <br />
+                            @Html.ActionLink("List Tickets", "Index", "Tickets", null, new { @style = "font-weight:bold;" }) <span> | </span>
+                            @Html.ActionLink("Add Ticket", "Create", "Tickets", new { id = item.Id }, new { @style = "font-weight:bold;" }) 
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

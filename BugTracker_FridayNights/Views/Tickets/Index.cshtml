@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BugTracker_FridayNights.Models.Ticket>
+@using BugTracker_FridayNights.Helpers
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Project")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("Priority")
+        </th>
+        <th>
+            @Html.DisplayName("Type")
+        </th>
+        <th>
+            @Html.DisplayName("Links")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TicketType.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info" }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "btn btn-sm btn-warning" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-sm btn-danger" })
+            <br />
+            @Html.ActionLink("Add Comment","Create", "TicketComments", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin:5px 0px 5px 0px;" })
+            <br />
+            @Html.ActionLink("Add Attachment", "Create", "TicketAttachments", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin:0px 0px 5px 0px;" })
+            <br />
+            @Html.ActionLink("View History", "Index", "TicketHistories", new { id = item.Id }, new { @class = "btn btn-sm btn-info", @style = "margin:0px 0px 0px 0px;" })
+        </td>
+    </tr>
+}
+
+</table>

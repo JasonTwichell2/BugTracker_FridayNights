@@ -1,0 +1,43 @@
+﻿@model BugTracker_FridayNights.Models.Project
+
+@{
+    ViewBag.Title = "RemoveUser";
+}
+
+<div class="jumbotron">
+    <h1>@ViewBag.Title</h1>
+    <p class="lead">The ADMIN DASHBOARD allows an Administrator to execute various functionality. In this case an Administrator (or PM) wants to REMOVE a user to a Project</p>
+    <p>@Html.ActionLink("Main Page", "Index", "Home")
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2><strong>Project Title:</strong> @Model.Name</h2>
+        <p>
+            <h3><strong>Description:</strong></h3>
+            <h3>@Model.Description</h3>
+        </p>
+    </div>
+</div>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+@Html.Hidden("ProjectId",Model.Id)
+<div class="row">
+    <div class="col-md-6">
+        <h2>Remove Users</h2>
+        <p>Choose the User(s) you want to remove from the available list. If you want to remove multiple users press and hold <code>shift</code> while making your selections</p>
+    </div>
+    <div class="col-md-6">
+        <br />
+        @Html.ListBox("AssignedUsers", null, htmlAttributes: new { @class = "form-control" })
+    </div>
+</div>
+<div class="row">
+    <br />
+    <button type="submit" class="btn btn-primary">Remove</button>
+</div>
+}
